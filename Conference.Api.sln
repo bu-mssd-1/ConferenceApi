@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "ConferenceWebApi\WebApi.csproj", "{4E0AAF09-716C-4641-B293-0ED290270823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModels", "DataModels\DataModels.csproj", "{FF879AAE-1BB9-4A44-9747-5F08BB033C63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDataProviders", "SqlDataProviders\SqlDataProviders.csproj", "{D163C35D-AEEC-42F2-A1BC-E5EB6C099334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{8F330863-B956-400A-8425-15EB305DABFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{808BDF99-39D2-4CA7-AE63-3B03B106937A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockDataProviders", "MockDataProviders\MockDataProviders.csproj", "{A6044BAE-B979-412E-BDC4-704A39069613}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TSQL Scripts", "TSQL Scripts", "{210DE7F1-DB13-43A5-8071-4A72DC48726B}"
+	ProjectSection(SolutionItems) = preProject
+		CreateDB.sql = CreateDB.sql
+		SqlTables.sql = SqlTables.sql
+		StoredProcedures.sql = StoredProcedures.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E0AAF09-716C-4641-B293-0ED290270823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0AAF09-716C-4641-B293-0ED290270823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0AAF09-716C-4641-B293-0ED290270823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0AAF09-716C-4641-B293-0ED290270823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF879AAE-1BB9-4A44-9747-5F08BB033C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF879AAE-1BB9-4A44-9747-5F08BB033C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF879AAE-1BB9-4A44-9747-5F08BB033C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF879AAE-1BB9-4A44-9747-5F08BB033C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D163C35D-AEEC-42F2-A1BC-E5EB6C099334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D163C35D-AEEC-42F2-A1BC-E5EB6C099334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D163C35D-AEEC-42F2-A1BC-E5EB6C099334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D163C35D-AEEC-42F2-A1BC-E5EB6C099334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F330863-B956-400A-8425-15EB305DABFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F330863-B956-400A-8425-15EB305DABFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F330863-B956-400A-8425-15EB305DABFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F330863-B956-400A-8425-15EB305DABFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{808BDF99-39D2-4CA7-AE63-3B03B106937A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{808BDF99-39D2-4CA7-AE63-3B03B106937A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{808BDF99-39D2-4CA7-AE63-3B03B106937A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{808BDF99-39D2-4CA7-AE63-3B03B106937A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6044BAE-B979-412E-BDC4-704A39069613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6044BAE-B979-412E-BDC4-704A39069613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6044BAE-B979-412E-BDC4-704A39069613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6044BAE-B979-412E-BDC4-704A39069613}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

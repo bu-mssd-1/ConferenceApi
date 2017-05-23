@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using DataModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -18,7 +19,13 @@ namespace MockDataProviders
         {
             var results = new Collection<User>();
 
-            await Task.Delay(1);
+            await Task.Run(() =>
+            {
+                results.Add(new User() { UserId = Guid.NewGuid().ToString(), DevicePhoneNumber = "+14254443333", DateCreated = DateTime.UtcNow, Pin = "21212", IsActive = true });
+                results.Add(new User() { UserId = Guid.NewGuid().ToString(), DevicePhoneNumber = "+14254442222", DateCreated = DateTime.UtcNow, Pin = "21212", IsActive = true });
+                results.Add(new User() { UserId = Guid.NewGuid().ToString(), DevicePhoneNumber = "+14254441111", DateCreated = DateTime.UtcNow, Pin = "21212", IsActive = true });
+                results.Add(new User() { UserId = Guid.NewGuid().ToString(), DevicePhoneNumber = "+14254440000", DateCreated = DateTime.UtcNow, Pin = "21212", IsActive = true });
+            });
 
             return results;
         }
@@ -32,7 +39,10 @@ namespace MockDataProviders
         {
             var result = default(User);
 
-            await Task.Delay(1);
+            await Task.Run(() =>
+            {
+                result = new User() { UserId = Guid.NewGuid().ToString(), DevicePhoneNumber = "+14254443333", DateCreated = DateTime.UtcNow, Pin = "21212", IsActive = true };
+            });
 
             return result;
         }

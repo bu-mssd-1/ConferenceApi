@@ -15,7 +15,7 @@ namespace Contracts
         /// <param name="countryCode">A country code in 2 digit ISO format</param>
         /// <param name="areaCode">An area code</param>
         /// <returns>A collection of available phone numbers</returns>
-        public abstract Task<ICollection<AvailablePhoneNumber>> GetAvailablePhoneNumbers(string countryCode, string areaCode);
+        public abstract Task<ICollection<AvailablePhoneNumber>> GetAvailablePhoneNumbers(string countryCode, int? areaCode);
 
         /// <summary>
         /// Makes a call 

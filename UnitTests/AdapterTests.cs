@@ -13,7 +13,7 @@ namespace UnitTests
         {
             CommonAdapter adapter = new TwilioAdapter();
 
-            var result = await adapter.GetAvailablePhoneNumbers("US", "732");
+            var result = await adapter.GetAvailablePhoneNumbers("US", 732);
 
             Assert.IsNotNull(result);
         }

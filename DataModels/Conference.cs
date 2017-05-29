@@ -10,6 +10,17 @@ namespace DataModels
     public partial class Conference : BaseModel
     {
         /// <summary>
+        /// An identification of the object
+        /// </summary>
+        public override string Id
+        {
+            get
+            {
+                return this.ConferenceId;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the value of ConferenceId.
         /// </summary>
         [DataMember]

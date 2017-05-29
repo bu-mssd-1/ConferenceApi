@@ -10,6 +10,17 @@ namespace DataModels
     public partial class User : BaseModel
     {
         /// <summary>
+        /// An identification of the object
+        /// </summary>
+        public override string Id
+        {
+            get
+            {
+                return this.UserId;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the value of UserId.
         /// </summary>
         [DataMember]

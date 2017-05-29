@@ -7,6 +7,17 @@ namespace DataModels
     public partial class VirtualPhoneNumber : BaseModel
     {
         /// <summary>
+        /// An identification of the object
+        /// </summary>
+        public override string Id
+        {
+            get
+            {
+                return this.VirtualPhoneNumberId;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the value of VirtualPhoneNumberId.
         /// </summary>
         [DataMember]

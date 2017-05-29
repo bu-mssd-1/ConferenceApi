@@ -16,6 +16,6 @@ namespace ConferenceWebApi
         Mock = 1,
 
         [EnumMember]
-        Xml = 2
+        Json = 2
     }
 }

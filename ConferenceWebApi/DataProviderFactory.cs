@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using JsonDataProviders;
 using MockDataProviders;
 using SqlDataProviders;
 
@@ -26,7 +27,8 @@ namespace ConferenceWebApi
                 case DataProviderType.Mock:
                     provider = new UserDataProviderMock();
                     break;
-                case DataProviderType.Xml:
+                case DataProviderType.Json:
+                    provider = new UserDataProviderJson();
                     break;
                 default:
                     break;
@@ -53,7 +55,8 @@ namespace ConferenceWebApi
                 case DataProviderType.Mock:
                     provider = new ConferenceDataProviderMock();
                     break;
-                case DataProviderType.Xml:
+                case DataProviderType.Json:
+                    provider = new ConferenceDataProviderJson();
                     break;
                 default:
                     break;
@@ -79,7 +82,8 @@ namespace ConferenceWebApi
                 case DataProviderType.Mock:
                     provider = new VirtualPhoneNumberDataProviderMock();
                     break;
-                case DataProviderType.Xml:
+                case DataProviderType.Json:
+                    provider = new VirtualPhoneNumberDataProviderJson();
                     break;
                 default:
                     break;

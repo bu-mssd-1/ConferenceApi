@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TSQL Scripts", "TSQL Script
 		StoredProcedures.sql = StoredProcedures.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDataProviders", "JsonDataProviders\JsonDataProviders.csproj", "{ECB7AC0D-0A7E-432D-B3F8-FD77176984DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{A6044BAE-B979-412E-BDC4-704A39069613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6044BAE-B979-412E-BDC4-704A39069613}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6044BAE-B979-412E-BDC4-704A39069613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB7AC0D-0A7E-432D-B3F8-FD77176984DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB7AC0D-0A7E-432D-B3F8-FD77176984DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB7AC0D-0A7E-432D-B3F8-FD77176984DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB7AC0D-0A7E-432D-B3F8-FD77176984DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

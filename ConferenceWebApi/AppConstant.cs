@@ -28,8 +28,8 @@ namespace ConferenceWebApi
                         d = DataProviderType.Mock;
                         break;
 
-                    case "xml":
-                        d = DataProviderType.Xml;
+                    case "json":
+                        d = DataProviderType.Json;
                         break;
 
                     default:

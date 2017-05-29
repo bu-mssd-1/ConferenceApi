@@ -1,19 +1,33 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace DataModels
 {
     [DataContract]
     public abstract class BaseModel
     {
+        /// <summary>
+        /// We need this ID for Json Indexer
+        /// </summary>
+        public abstract string Id { get; }
+
+        /// <summary>
+        /// Converts the object into a Json string
+        /// </summary>
+        /// <returns></returns>
         public string ToJson()
         {
-            return "TODO: Convert to Json";
+            return JsonConvert.SerializeObject(this);
         }
 
-        public bool WriteToFile(string fileName)
+        /// <summary>
+        /// Writes the object into a file
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>A boolean</returns>
+        public void WriteToFile(string fileName)
         {
-            // TODO: Write the object to a file
-            return true;
+            System.IO.File.WriteAllText(fileName, this.ToJson());
         }
     }
 }

@@ -184,6 +184,10 @@
       <Project>{ff879aae-1bb9-4a44-9747-5f08bb033c63}</Project>
       <Name>DataModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JsonDataProviders\JsonDataProviders.csproj">
+      <Project>{ecb7ac0d-0a7e-432d-b3f8-fd77176984da}</Project>
+      <Name>JsonDataProviders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MockDataProviders\MockDataProviders.csproj">
       <Project>{a6044bae-b979-412e-bdc4-704a39069613}</Project>
       <Name>MockDataProviders</Name>

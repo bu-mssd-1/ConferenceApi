@@ -40,7 +40,7 @@ namespace ConferenceWebApi
                 return d;
             }
         }
-        
+
         /// <summary>
         /// Static constructor
         /// </summary>
@@ -48,6 +48,7 @@ namespace ConferenceWebApi
         {
             // Read from configuratio file
             dataProviderTypeInConfig = ConfigurationManager.AppSettings["dataProviderType"];
+
         }
     }
 }

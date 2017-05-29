@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace UnitTests
 {
     [TestClass]
-    public class FacadeTest
+    public class FacadeTests
     {
         [TestMethod]
         public void GetUserViaWebService()

@@ -53,8 +53,10 @@
   <ItemGroup>
     <Compile Include="AbstractFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyTests.cs" />
     <Compile Include="TestConstant.cs" />
-    <Compile Include="FacadeTest.cs" />
+    <Compile Include="FacadeTests.cs" />
+    <Compile Include="AdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -84,6 +86,10 @@
     <ProjectReference Include="..\SqlDataProviders\SqlDataProviders.csproj">
       <Project>{d163c35d-aeec-42f2-a1bc-e5eb6c099334}</Project>
       <Name>SqlDataProviders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwilioAdapter\TwilioExternalAdapter.csproj">
+      <Project>{522ca403-b5f6-4fcb-b3b8-5cf723b9453b}</Project>
+      <Name>TwilioExternalAdapter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

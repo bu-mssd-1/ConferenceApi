@@ -206,6 +206,10 @@
       <Project>{d163c35d-aeec-42f2-a1bc-e5eb6c099334}</Project>
       <Name>SqlDataProviders</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwilioAdapter\TwilioExternalAdapter.csproj">
+      <Project>{522ca403-b5f6-4fcb-b3b8-5cf723b9453b}</Project>
+      <Name>TwilioExternalAdapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

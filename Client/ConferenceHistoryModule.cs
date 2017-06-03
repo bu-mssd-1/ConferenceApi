@@ -48,7 +48,8 @@ namespace Client
                 {
                     foreach (var participant in participantNumbers)
                     {
-                        conferenceHistoryData.Add(new ConferenceHistoryItem() { ConferenceId = conf, ConferencePhoneNumber = confNum, ParticipantPhoneNumber = participant, Start = DateTime.Now.AddMinutes(-20), End = DateTime.Now.AddMinutes(-2) });
+                        conferenceHistoryData.Add(new ConferenceHistoryItem() { ConferenceId = conf, ConferencePhoneNumber = confNum,
+                            ParticipantPhoneNumber = participant, Start = DateTime.Now.AddMinutes(-20), End = DateTime.Now.AddMinutes(-2) });
                     }
                 }
             }

@@ -47,7 +47,8 @@ namespace Client
             {
                 foreach (var confNum in conferenceNumbers)
                 {
-                    conferences.Add(new Conference() { ConferenceId = conf, ConferencePhoneNumber = confNum, ConferenceName = "Conf " + conf, DateCreated = DateTime.Now.AddDays(-1), Participants = string.Join(",", participants) });
+                    conferences.Add(new Conference() { ConferenceId = conf, ConferencePhoneNumber = confNum,
+                        ConferenceName = "Conf " + conf, DateCreated = DateTime.Now.AddDays(-1), Participants = string.Join(",", participants) });
                 }
             }
         }

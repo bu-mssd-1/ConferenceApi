@@ -47,6 +47,8 @@
     <Compile Include="AvailablePhoneNumber.cs" />
     <Compile Include="BaseDataModel.cs" />
     <Compile Include="Conference.cs" />
+    <Compile Include="ConferenceHistoryItem.cs" />
+    <Compile Include="GenericEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="VirtualPhoneNumber.cs" />

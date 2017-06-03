@@ -57,12 +57,17 @@
     <Compile Include="TestConstant.cs" />
     <Compile Include="FacadeTests.cs" />
     <Compile Include="AdapterTests.cs" />
+    <Compile Include="ObserverPatternTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{2b97a7cb-3c3e-459e-a0af-2f89fb533a20}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConferenceWebApi\WebApi.csproj">
       <Project>{4e0aaf09-716c-4641-b293-0ed290270823}</Project>
       <Name>WebApi</Name>

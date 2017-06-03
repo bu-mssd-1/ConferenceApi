@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDataProviders", "JsonDa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwilioExternalAdapter", "TwilioAdapter\TwilioExternalAdapter.csproj", "{522CA403-B5F6-4FCB-B3B8-5CF723B9453B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{2B97A7CB-3C3E-459E-A0AF-2F89FB533A20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{522CA403-B5F6-4FCB-B3B8-5CF723B9453B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{522CA403-B5F6-4FCB-B3B8-5CF723B9453B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{522CA403-B5F6-4FCB-B3B8-5CF723B9453B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B97A7CB-3C3E-459E-A0AF-2F89FB533A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B97A7CB-3C3E-459E-A0AF-2F89FB533A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B97A7CB-3C3E-459E-A0AF-2F89FB533A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B97A7CB-3C3E-459E-A0AF-2F89FB533A20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

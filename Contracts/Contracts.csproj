@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="CommonAdapter.cs" />
     <Compile Include="ConferenceDataProvider.cs" />
+    <Compile Include="PublisherModule.cs" />
+    <Compile Include="ModuleBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDataProvider.cs" />
     <Compile Include="VirtualPhoneNumberDataProvider.cs" />

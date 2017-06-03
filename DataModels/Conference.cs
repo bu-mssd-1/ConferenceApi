@@ -26,6 +26,9 @@ namespace DataModels
         [DataMember]
         public string ConferenceId { get; set; }
 
+        [DataMember]
+        public string ConferencePhoneNumber { get; set; }
+
         /// <summary>
         /// Gets or sets the value of UserId.
         /// </summary>

@@ -59,6 +59,7 @@
     <Compile Include="AdapterTests.cs" />
     <Compile Include="ObserverPatternTests.cs" />
     <Compile Include="ChainOfResponsibilityTest.cs" />
+    <Compile Include="StatePatternTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

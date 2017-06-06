@@ -10,6 +10,11 @@ namespace DataModels
     public partial class Conference : BaseModel
     {
         /// <summary>
+        /// A placeholder for conf state
+        /// </summary>
+        private ConferenceState conferenceState;
+
+        /// <summary>
         /// An identification of the object
         /// </summary>
         public override string Id
@@ -75,10 +80,28 @@ namespace DataModels
         public string Status { get; set; }
 
         /// <summary>
+        /// Gets or sets the conference state
+        /// </summary>
+        [DataMember]
+        public ConferenceState ConferenceState
+        {
+            get { return this.conferenceState; }
+            set
+            {
+                this.conferenceState = value;
+            }
+        }
+
+        public void SetState(ConferenceState state)
+        {
+            this.conferenceState = state;
+            this.conferenceState.Handle(this);
+        }
+
+        /// <summary>
         /// Gets or sets the value of ProviderId.
         /// </summary>
         [DataMember]
         public string ProviderId { get; set; }
-
     }
 }

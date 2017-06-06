@@ -36,23 +36,7 @@ namespace Client
 
         private void BuildMockData()
         {
-            var conferenceNumbers = ConferenceTestMockDataProvider.GetMockConferencePhoneNumbers();
-            var participantNumbers = ConferenceTestMockDataProvider.GetMockParticipantPhoneNumbers();
-            var conferenceIds = ConferenceTestMockDataProvider.GetMockConferences();
-
-            conferenceHistoryData = new List<ConferenceHistoryItem>();
-
-            foreach (var conf in conferenceIds)
-            {
-                foreach (var confNum in conferenceNumbers)
-                {
-                    foreach (var participant in participantNumbers)
-                    {
-                        conferenceHistoryData.Add(new ConferenceHistoryItem() { ConferenceId = conf, ConferencePhoneNumber = confNum,
-                            ParticipantPhoneNumber = participant, Start = DateTime.Now.AddMinutes(-20), End = DateTime.Now.AddMinutes(-2) });
-                    }
-                }
-            }
+            this.conferenceHistoryData = ConferenceTestMockDataProvider.GetMockConferenceHistory();
         }
     }
 }

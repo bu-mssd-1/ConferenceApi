@@ -53,6 +53,9 @@ namespace DataModels
         [DataMember]
         public string Participants { get; set; }
 
+        [DataMember]
+        public double TotalDuration { get; set; }
+
         /// <summary>
         /// Gets or sets the value of Cost.
         /// </summary>

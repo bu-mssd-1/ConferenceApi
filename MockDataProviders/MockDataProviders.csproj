@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallCostProcessor.cs" />
+    <Compile Include="CallDurationCollector.cs" />
     <Compile Include="ConferenceDataProviderMock.cs" />
     <Compile Include="ConferenceTestMockDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

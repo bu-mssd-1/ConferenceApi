@@ -24,7 +24,8 @@ namespace UnitTests
             Assert.IsTrue(callDurationCollector.Successor.GetType() == typeof(CallCostProcessor));
             
             var confHistory = ConferenceTestMockDataProvider.MockConferenceHistory.FirstOrDefault();
-            var conference = new Conference() { ConferenceId = confHistory.ConferenceId, ConferencePhoneNumber = confHistory.ConferencePhoneNumber };
+            var conference = new Conference() { ConferenceId = confHistory.ConferenceId,
+                ConferencePhoneNumber = confHistory.ConferencePhoneNumber };
 
             // Make sure the total duration and total cost is zero at this point
             Assert.IsTrue(conference.Cost == null);
@@ -38,3 +39,4 @@ namespace UnitTests
         }
     }
 }
+

@@ -50,7 +50,7 @@
     <Compile Include="ConferenceEndState.cs" />
     <Compile Include="ConferenceHistoryItem.cs" />
     <Compile Include="ConferencePauseState.cs" />
-    <Compile Include="ConferenceResumeState.cs" />
+    <Compile Include="ConferenceReadyState.cs" />
     <Compile Include="ConferenceState.cs" />
     <Compile Include="DataModelConstant.cs" />
     <Compile Include="GenericEventArgs.cs" />

@@ -12,5 +12,6 @@ namespace Contracts
         public abstract Task<Conference> CreateConference(Conference conference);
         public abstract Task<Conference> UpdateConference(Conference conference);
         public abstract Task<bool> DeleteConference(string id);
+        public abstract Task<Conference> GetByPhoneAndPassCode(string phoneNumber, string passCode);
     }
 }

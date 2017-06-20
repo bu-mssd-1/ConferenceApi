@@ -11,5 +11,6 @@ namespace Contracts
         public abstract Task<User> CreateUser(User User);
         public abstract Task<User> UpdateUser(User User);
         public abstract Task<bool> DeleteUser(string id);
+        public abstract Task<bool> DoesUserExits(string phoneNumber);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 using Twilio.Rest.Api.V2010.Account.AvailablePhoneNumberCountry;
 
 namespace TwilioExternalAdapter
@@ -60,6 +61,30 @@ namespace TwilioExternalAdapter
             }
                 
             return results;
+        }
+
+        /// <summary>
+        /// Purchases a phone number
+        /// </summary>
+        /// <param name="phone">The phone number to buy</param>
+        /// <returns>A phone number sid as supplied by 3rd party provider</returns>
+        public async Task<string> PurchasePhoneNumber(string phoneNumber)
+        {
+            var sid = string.Empty;
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+            {
+                TwilioClient.Init(ProviderConstant.TwilioAccountSid, ProviderConstant.TwilioAuthToken);
+
+                var incomingResource = await IncomingPhoneNumberResource.CreateAsync(phoneNumber: new Twilio.Types.PhoneNumber(phoneNumber));
+
+                if (incomingResource != null)
+                {
+                    sid = incomingResource.Sid;
+                }
+            }
+
+            return sid;
         }
     }
 }

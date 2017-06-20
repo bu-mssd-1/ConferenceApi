@@ -37,6 +37,30 @@ BEGIN
 END
 GO
 
+IF EXISTS (SELECT * FROM SYS.OBJECTS WHERE TYPE='P' AND NAME='DoesUserExist')
+	DROP PROCEDURE [dbo].[DoesUserExist]
+GO
+
+/*
+Checkes if a user exists in the database
+
+TEST: [DoesUserExist] '+14254490088'
+*/
+CREATE PROCEDURE [dbo].[DoesUserExist]
+(
+	@PhoneNumber NVARCHAR(50)
+)
+AS
+
+BEGIN
+	DECLARE @UserId NVARCHAR(50)
+	SET @UserId = ''
+
+	SELECT @UserId=UserId FROM [dbo].[Users] WHERE DevicePhoneNumber = @PhoneNumber
+
+	SELECT @UserId as UserId
+END
+
 IF EXISTS (SELECT * FROM SYS.OBJECTS WHERE TYPE='P' AND NAME='GetVirtualPhoneNumbers')
 	DROP PROCEDURE [dbo].[GetVirtualPhoneNumbers]
 GO
@@ -126,7 +150,7 @@ CREATE PROCEDURE [dbo].[GetConferences]
 AS
 
 BEGIN
-	SELECT	[ConferenceId],[UserId],[ConferenceName],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
+	SELECT	[ConferenceId],[UserId],[ConferenceName],[ConferencePassCode],[ConferencePhoneNumber],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
 	FROM	[dbo].[Conferences]
 END
 GO
@@ -145,7 +169,7 @@ CREATE PROCEDURE [dbo].[GetConferenceById]
 AS
 
 BEGIN
-	SELECT	[ConferenceId],[UserId],[ConferenceName],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
+	SELECT	[ConferenceId],[UserId],[ConferenceName],[ConferencePassCode],[ConferencePhoneNumber],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
 	FROM	[dbo].[Conferences] o
 	WHERE	CONVERT(NVARCHAR(50), o.ConferenceId) = @ConferenceId
 END
@@ -165,7 +189,7 @@ CREATE PROCEDURE [dbo].[GetConferencesByUserId]
 AS
 
 BEGIN
-	SELECT	[ConferenceId],[UserId],[ConferenceName],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
+	SELECT	[ConferenceId],[UserId],[ConferenceName],[ConferencePassCode],[ConferencePhoneNumber],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
 	FROM	[dbo].[Conferences] o
 	WHERE	CONVERT(NVARCHAR(50), o.UserId) = @UserId
 	ORDER
@@ -187,10 +211,15 @@ CREATE PROCEDURE [dbo].[GetConferenceByProviderId]
 AS
 
 BEGIN
-	SELECT	[ConferenceId],[UserId],[ConferenceName],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
+	SELECT	[ConferenceId],[UserId],[ConferenceName],[ConferencePassCode],[ConferencePhoneNumber],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
 	FROM	[dbo].[Conferences] o
 	WHERE	CONVERT(NVARCHAR(50), o.ProviderId) = @ProviderId
 END
+GO
+
+
+IF EXISTS (SELECT * FROM SYS.OBJECTS WHERE TYPE='P' AND NAME='GetMessageQueues')
+	DROP PROCEDURE [dbo].[GetMessageQueues]
 GO
 
 /*
@@ -251,20 +280,25 @@ GO
 
 CREATE PROCEDURE [dbo].[InsertConference]
 (
-	@ConferenceId UNIQUEIDENTIFIER, @UserId UNIQUEIDENTIFIER, @ConferenceName NVARCHAR(50), @WelcomeMessage NVARCHAR(50), @Participants NVARCHAR(MAX), @Cost DECIMAL(10,2), @DateCreated DATETIME, @Status NVARCHAR(50), @ProviderId NVARCHAR(100)
+	@ConferenceId UNIQUEIDENTIFIER, @UserId UNIQUEIDENTIFIER, @ConferenceName NVARCHAR(50), @ConferencePassCode NVARCHAR(50), 
+	@ConferencePhoneNumber NVARCHAR(50), @WelcomeMessage NVARCHAR(50), @Participants NVARCHAR(MAX), @Cost DECIMAL(10,2), 
+	@DateCreated DATETIME, @Status NVARCHAR(50), @ProviderId NVARCHAR(100)
 )
 AS
 
 BEGIN
 	
 	INSERT	
-	INTO	[dbo].[Conferences] ([ConferenceId], [UserId], [ConferenceName], [WelcomeMessage], [Participants], [Cost], [DateCreated], [Status], [ProviderId])
-	VALUES	(@ConferenceId, @UserId, @ConferenceName, @WelcomeMessage, @Participants, @Cost, @DateCreated, @Status, @ProviderId)
+	INTO	[dbo].[Conferences] ([ConferenceId], [UserId], [ConferenceName], [ConferencePassCode], [ConferencePhoneNumber], 
+			[WelcomeMessage], [Participants], [Cost], [DateCreated], [Status], [ProviderId])
+	VALUES	(@ConferenceId, @UserId, @ConferenceName, @ConferencePassCode, @ConferencePhoneNumber, 
+			@WelcomeMessage, @Participants, @Cost, @DateCreated, @Status, @ProviderId)
 	
 	EXEC [dbo].[GetConferenceById] @ConferenceId
 
 END
 GO
+
 
 /*
 Updates a user record in the users table.
@@ -321,19 +355,20 @@ GO
 
 CREATE PROCEDURE [dbo].[UpdateConference]
 (
-	@ConferenceId UNIQUEIDENTIFIER, @UserId UNIQUEIDENTIFIER, @ConferenceName NVARCHAR(50), @WelcomeMessage NVARCHAR(50), @Participants NVARCHAR(MAX), @Cost DECIMAL(10,2), @DateCreated DATETIME, @Status NVARCHAR(50), @ProviderId NVARCHAR(100)
+	@ConferenceId UNIQUEIDENTIFIER, @UserId UNIQUEIDENTIFIER, @ConferenceName NVARCHAR(50), @ConferencePassCode NVARCHAR(50), @ConferencePhoneNumber NVARCHAR(50), @WelcomeMessage NVARCHAR(50), @Participants NVARCHAR(MAX), @Cost DECIMAL(10,2), @DateCreated DATETIME, @Status NVARCHAR(50), @ProviderId NVARCHAR(100)
 )
 AS
 
 BEGIN
 	
 	UPDATE	[dbo].[Conferences]
-	SET		[UserId] = @UserId, [ConferenceName] = @ConferenceName, [WelcomeMessage] = @WelcomeMessage, [Participants] = @Participants, [Cost] = @Cost, [DateCreated] = @DateCreated, [Status] = @Status, [ProviderId] = @ProviderId
+	SET		[UserId] = @UserId, [ConferenceName] = @ConferenceName, [ConferencePassCode] = @ConferencePassCode, [ConferencePhoneNumber] = @ConferencePhoneNumber, [WelcomeMessage] = @WelcomeMessage, [Participants] = @Participants, [Cost] = @Cost, [DateCreated] = @DateCreated, [Status] = @Status, [ProviderId] = @ProviderId
 	WHERE	ConferenceId = @ConferenceId
 	
 	EXEC [dbo].[GetConferenceById] @ConferenceId
 END
 GO
+
 
 
 IF EXISTS (SELECT * FROM SYS.OBJECTS WHERE TYPE='P' AND NAME='DeleteUser')
@@ -401,3 +436,43 @@ BEGIN
 	
 END
 GO
+
+/*
+Retrive a phone number record by its phone number
+*/
+IF EXISTS (SELECT * FROM SYS.OBJECTS WHERE TYPE='P' AND NAME='GetVirtualPhoneNumberByPhoneNumber')
+	DROP PROCEDURE [dbo].[GetVirtualPhoneNumberByPhoneNumber]
+GO
+
+CREATE PROCEDURE [dbo].[GetVirtualPhoneNumberByPhoneNumber]
+(
+	@PhoneNumber NVARCHAR(50)
+)
+AS
+
+BEGIN
+	SELECT	[VirtualPhoneNumberId],[UserId],[PhoneNumber],[DateCreated],[IsActive],[ProviderId]
+	FROM	[dbo].[VirtualPhoneNumbers] o
+	WHERE	CONVERT(NVARCHAR(50), o.PhoneNumber) = @PhoneNumber
+END
+
+GO
+
+
+/*
+Retrieves a particular conference from the database by 
+	a given PhoneNumber and PassCode.
+*/
+Create PROCEDURE [dbo].[GetConferenceByPhoneAndPassCode]
+(
+	@PhoneNumber NVARCHAR(50),
+	@PassCode NVARCHAR(50)
+)
+AS
+
+BEGIN
+	SELECT	[ConferenceId],[UserId],[ConferenceName],[ConferencePhoneNumber],[ConferencePassCode],[WelcomeMessage],[Participants],[Cost],[DateCreated],[Status],[ProviderId]
+	FROM	[dbo].[Conferences] o
+	WHERE	o.ConferencePhoneNumber = @PhoneNumber AND o.ConferencePassCode = @PassCode
+END
+

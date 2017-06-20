@@ -1,6 +1,6 @@
 ﻿namespace DataModels
 {
-    public class ConferenceResumeState : ConferenceState
+    public class ConferenceReadyState : ConferenceState
     {
         /// <summary>
         /// Handles a state for a conference
@@ -10,7 +10,6 @@
         {
             if (conference != null)
             {
-                // TODO: Actual pausing a conference code goes here
                 // For our school project we will just set a property of the conference
                 conference.Status = DataModelConstant.ConferenceInProgress;
             }

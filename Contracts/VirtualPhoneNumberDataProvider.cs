@@ -12,5 +12,6 @@ namespace Contracts
         public abstract Task<VirtualPhoneNumber> CreateVirtualPhoneNumber(VirtualPhoneNumber VirtualPhoneNumber);
         public abstract Task<VirtualPhoneNumber> UpdateVirtualPhoneNumber(VirtualPhoneNumber VirtualPhoneNumber);
         public abstract Task<bool> DeleteVirtualPhoneNumber(string id);
+        public abstract Task<VirtualPhoneNumber> GetByVirtualPhoneNumber(string virtualphonenumber);
     }
 }

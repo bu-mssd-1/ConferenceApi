@@ -33,26 +33,13 @@ namespace TwilioExternalAdapter
         }
 
         /// <summary>
-        /// Makes a call 
+        /// Purchases a phone number
         /// </summary>
-        /// <param name="userId">A user Id</param>
-        /// <param name="from">A phone number</param>
-        /// <param name="to">A phone number</param>
-        public override void PlaceCall(string userId, string from, string to)
+        /// <param name="phoneNumber">The phone number to buy</param>
+        /// <returns>A phone number sid as supplied by 3rd party provider</returns>
+        public override async Task<string> PurchasePhoneNumber(string phoneNumber)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Sends a text message
-        /// </summary>
-        /// <param name="userId">A user Id</param>
-        /// <param name="from">A phone number</param>
-        /// <param name="to">A phone number</param>
-        /// <param name="message">A text message</param>
-        public override void SendSms(string userId, string from, string to, string message)
-        {
-            throw new NotImplementedException();
+            return await this.provider.PurchasePhoneNumber(phoneNumber);
         }
     }
 }

@@ -179,6 +179,45 @@ namespace SqlDataProviders
             return success;
         }
 
+        /// <summary>
+        /// Verifies if user exist
+        /// </summary>
+        /// <param name="phoneNumber">User phone number</param>
+        /// <returns></returns>
+        public override async Task<bool> DoesUserExits(string phoneNumber)
+        {
+            var exist = false;
+
+            phoneNumber = "+" + phoneNumber.Trim();
+
+            using (var connection = new SqlConnection(SqlProviderConstant.DatabaseConnectionString))
+            {
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "DoesUserExist";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@PhoneNumber", Value = phoneNumber });
+
+                    await connection.OpenAsync();
+
+                    var reader = await command.ExecuteReaderAsync();
+
+                    while (await reader.ReadAsync())
+                    {
+                        var userId = reader["UserId"].ToString();
+
+                        if (!string.IsNullOrEmpty(userId))
+                        {
+                            exist = true;
+                        }
+                    }
+                }
+            }
+
+            return exist;
+        }
+
         #endregion CRUD Operations        
 
         #region Private Methods

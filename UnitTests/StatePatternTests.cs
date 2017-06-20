@@ -23,7 +23,7 @@ namespace UnitTests
             Assert.IsTrue(conference.Status == DataModelConstant.ConferencePaused);
 
             // Set the conference state to In Progress
-            var resumeState = new ConferenceResumeState();
+            var resumeState = new ConferenceReadyState();
             conference.SetState(resumeState);
 
             // Test if the conference is Paused

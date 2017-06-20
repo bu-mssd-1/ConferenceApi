@@ -114,6 +114,15 @@ namespace JsonDataProviders
             return success;
         }
 
+        public override async Task<bool> DoesUserExits(string phoneNumber)
+        {
+            var success = false;
+
+            await Task.Delay(1);
+
+            return success;
+        }
+
         #endregion CRUD Operations        
     }
 }

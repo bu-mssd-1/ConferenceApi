@@ -34,6 +34,9 @@ namespace DataModels
         [DataMember]
         public string ConferencePhoneNumber { get; set; }
 
+        [DataMember]
+        public string ConferencePassCode { get; set; }
+
         /// <summary>
         /// Gets or sets the value of UserId.
         /// </summary>

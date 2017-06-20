@@ -52,6 +52,14 @@ namespace MockDataProviders
             return results;
         }
 
+        public override async Task<Conference> GetByPhoneAndPassCode(string phoneNumber, string passCode)
+        {
+            var result = default(Conference);
+
+            await Task.Delay(1);
+
+            return result;
+        }
         /// <summary>
         /// Creates a new Conference resource.
         /// </summary>

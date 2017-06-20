@@ -3,6 +3,7 @@ using DataModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using TwilioExternalAdapter;
 
 namespace ConferenceWebApi.Controllers
 {
@@ -36,6 +37,13 @@ namespace ConferenceWebApi.Controllers
         }
 
         [HttpGet]
+        [Route("~/api/virtualPhoneNumber/")]
+        public async Task<VirtualPhoneNumber> GetByPhone(string phoneNumber)
+        {
+            return await this.virtualPhoneNumberDataProvider.GetByVirtualPhoneNumber(phoneNumber);
+        }
+
+        [HttpGet]
         [Route("~/api/{userid}/virtualPhoneNumber")]
         public async Task<ICollection<VirtualPhoneNumber>> GetByUserId(string userid)
         {
@@ -46,6 +54,14 @@ namespace ConferenceWebApi.Controllers
         [Route("~/api/virtualPhoneNumber")]
         public async Task<VirtualPhoneNumber> Insert([FromBody] VirtualPhoneNumber virtualPhoneNumber)
         {
+            CommonAdapter adapter = new TwilioAdapter();
+            var providerId = await adapter.PurchasePhoneNumber(virtualPhoneNumber.PhoneNumber);
+
+            // Update provider Id
+            virtualPhoneNumber.ProviderId = providerId;
+
+            // TODO: Modify the resource in provider to include url/etc
+
             return await this.virtualPhoneNumberDataProvider.CreateVirtualPhoneNumber(virtualPhoneNumber);
         }
 

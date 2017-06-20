@@ -21,11 +21,11 @@ namespace ConferenceWebApi.Controllers
             this.conferenceDataProvider = new DataProviderFactory().GetConferenceDataProvider(AppConstant.DataProviderType);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("~/api/conference")]
-        public async Task<ICollection<Conference>> Get()
+        public async Task<Conference> Insert([FromBody] Conference conference)
         {
-            return await this.conferenceDataProvider.Get();
+            return await this.conferenceDataProvider.CreateConference(conference);
         }
 
         [HttpGet]
@@ -35,20 +35,21 @@ namespace ConferenceWebApi.Controllers
             return await this.conferenceDataProvider.GetById(id);
         }
 
+        #region 
+        [HttpGet]
+        [Route("~/api/conference")]
+        public async Task<ICollection<Conference>> Get()
+        {
+            return await this.conferenceDataProvider.Get();
+        }
+        
         [HttpGet]
         [Route("~/api/{userid}/conference")]
         public async Task<ICollection<Conference>> GetByUserId(string userid)
         {
             return await this.conferenceDataProvider.GetByUserId(userid);
         }
-
-        [HttpPost]
-        [Route("~/api/conference")]
-        public async Task<Conference> Insert([FromBody] Conference conference)
-        {
-            return await this.conferenceDataProvider.CreateConference(conference);
-        }
-
+        
         [HttpPut]
         [Route("~/api/conference")]
         public async Task<Conference> Update([FromBody] Conference conference)
@@ -62,5 +63,7 @@ namespace ConferenceWebApi.Controllers
         {
             return await this.conferenceDataProvider.DeleteConference(id);
         }
+
+        #endregion
     }
 }

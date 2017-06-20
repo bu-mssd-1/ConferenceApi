@@ -18,20 +18,10 @@ namespace Contracts
         public abstract Task<ICollection<AvailablePhoneNumber>> GetAvailablePhoneNumbers(string countryCode, int? areaCode);
 
         /// <summary>
-        /// Makes a call 
+        /// Purchases a phone number
         /// </summary>
-        /// <param name="userId">A user Id</param>
-        /// <param name="from">A phone number</param>
-        /// <param name="to">A phone number</param>
-        public abstract void PlaceCall(string userId, string from, string to);
-
-        /// <summary>
-        /// Sends a text message
-        /// </summary>
-        /// <param name="userId">A user Id</param>
-        /// <param name="from">A phone number</param>
-        /// <param name="to">A phone number</param>
-        /// <param name="message">A text message</param>
-        public abstract void SendSms(string userId, string from, string to, string message);
+        /// <param name="phoneNumber">The phone number to buy</param>
+        /// <returns>A phone number sid as supplied by 3rd party provider</returns>
+        public abstract Task<string> PurchasePhoneNumber(string phoneNumber);
     }
 }

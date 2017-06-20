@@ -15,22 +15,34 @@ namespace SqlDataProviders
 	public partial class ConferenceDataProviderSql : ConferenceDataProvider
     {
         #region CRUD operations
-
+        
         /// <summary>
-        /// Retrieves a list of Conference
+        /// Creates a new Conference resource.
         /// </summary>
-        /// <returns>A collection of Conferences</returns>
-        public override async Task<ICollection<Conference>> Get()
+        /// <param name="conference">A Conference object</param>
+        /// <returns>A newly created Conference object</returns>
+        public override async Task<Conference> CreateConference(Conference conference)
         {
-            var results = new Collection<Conference>();
+            var result = default(Conference);
 
             using (var connection = new SqlConnection(SqlProviderConstant.DatabaseConnectionString))
             {
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "GetConferences";
+                    command.CommandText = "InsertConference";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferenceId", Value = conference.ConferenceId });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@UserId", Value = conference.UserId });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferenceName", Value = conference.ConferenceName });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferencePassCode", Value = conference.ConferencePassCode });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferencePhoneNumber", Value = conference.ConferencePhoneNumber });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@WelcomeMessage", Value = conference.WelcomeMessage });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@Participants", Value = conference.Participants });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@Cost", Value = conference.Cost });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@DateCreated", Value = conference.DateCreated });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@Status", Value = conference.Status });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ProviderId", Value = conference.ProviderId });
 
                     await connection.OpenAsync();
 
@@ -38,14 +50,16 @@ namespace SqlDataProviders
                     {
                         while (await reader.ReadAsync())
                         {
-                            results.Add(await AssembleConferenceFromReaderAsync(reader));
+                            result = await AssembleConferenceFromReaderAsync(reader);
                         }
                     }
                 }
             }
 
-            return results;
+            return result;
         }
+
+        #region
 
         /// <summary>
         /// Retrieves a Conference
@@ -79,6 +93,82 @@ namespace SqlDataProviders
 
             return result;
         }
+
+
+        /// <summary>
+        /// Retrieves a list of Conference
+        /// </summary>
+        /// <returns>A collection of Conferences</returns>
+        public override async Task<ICollection<Conference>> Get()
+        {
+            var results = new Collection<Conference>();
+
+            using (var connection = new SqlConnection(SqlProviderConstant.DatabaseConnectionString))
+            {
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "GetConferences";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    await connection.OpenAsync();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            results.Add(await AssembleConferenceFromReaderAsync(reader));
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+
+
+
+        /// <summary>
+        /// Retrieves a Conference
+        /// </summary>
+        /// <param name="phoneNumber">A virtual phone number.</param>
+        /// <param name="passCode">A pass code.</param>
+        /// <returns>A Conference object</returns>
+        public override async Task<Conference> GetByPhoneAndPassCode(string phoneNumber, string passCode)
+        {
+            var result = default(Conference);
+
+            if (!phoneNumber.Trim().StartsWith("+"))
+            {
+                phoneNumber = "+" + phoneNumber.Trim();
+            }
+
+            using (var connection = new SqlConnection(SqlProviderConstant.DatabaseConnectionString))
+            {
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "GetConferenceByPhoneAndPassCode";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@PhoneNumber", Value = phoneNumber });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@PassCode", Value = passCode });
+
+                    await connection.OpenAsync();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            result = await AssembleConferenceFromReaderAsync(reader);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
         /// <summary>
         /// Retrieves a list of Conference by user id.
         /// </summary>
@@ -111,46 +201,7 @@ namespace SqlDataProviders
             return results;
         }
 
-        /// <summary>
-        /// Creates a new Conference resource.
-        /// </summary>
-        /// <param name="conference">A Conference object</param>
-        /// <returns>A newly created Conference object</returns>
-        public override async Task<Conference> CreateConference(Conference conference)
-        {
-            var result = default(Conference);
-
-            using (var connection = new SqlConnection(SqlProviderConstant.DatabaseConnectionString))
-            {
-                using (var command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandText = "InsertConference";
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferenceId", Value = conference.ConferenceId });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@UserId", Value = conference.UserId });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferenceName", Value = conference.ConferenceName });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@WelcomeMessage", Value = conference.WelcomeMessage });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@Participants", Value = conference.Participants });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@Cost", Value = conference.Cost });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@DateCreated", Value = conference.DateCreated });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@Status", Value = conference.Status });
-                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ProviderId", Value = conference.ProviderId });
-
-                    await connection.OpenAsync();
-
-                    using (var reader = await command.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            result = await AssembleConferenceFromReaderAsync(reader);
-                        }
-                    }
-                }
-            }
-
-            return result;
-        }
+        
 
         /// <summary>
         /// Updates an existing Conference resource.
@@ -171,6 +222,8 @@ namespace SqlDataProviders
                     command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferenceId", Value = conference.ConferenceId });
                     command.Parameters.Add(new SqlParameter() { ParameterName = "@UserId", Value = conference.UserId });
                     command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferenceName", Value = conference.ConferenceName });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferencePassCode", Value = conference.ConferencePassCode });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@ConferencePhoneNumber", Value = conference.ConferencePhoneNumber });
                     command.Parameters.Add(new SqlParameter() { ParameterName = "@WelcomeMessage", Value = conference.WelcomeMessage });
                     command.Parameters.Add(new SqlParameter() { ParameterName = "@Participants", Value = conference.Participants });
                     command.Parameters.Add(new SqlParameter() { ParameterName = "@Cost", Value = conference.Cost });
@@ -223,6 +276,8 @@ namespace SqlDataProviders
             return success;
         }
 
+        #endregion
+
         #endregion CRUD Operations
 
         #region Private Methods
@@ -241,6 +296,8 @@ namespace SqlDataProviders
                     ConferenceId = reader["ConferenceId"].ToString(),
                     UserId = reader["UserId"].ToString(),
                     ConferenceName = reader["ConferenceName"].ToString(),
+                    ConferencePassCode = reader["ConferencePassCode"].ToString(),
+                    ConferencePhoneNumber = reader["ConferencePhoneNumber"].ToString(),
                     WelcomeMessage = reader["WelcomeMessage"].ToString(),
                     Participants = reader["Participants"].ToString(),
                     Cost = decimal.Parse(reader["Cost"].ToString()),

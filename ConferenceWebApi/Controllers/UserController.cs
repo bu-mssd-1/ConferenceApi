@@ -35,6 +35,13 @@ namespace ConferenceWebApi.Controllers
             return await this.userDataProvider.GetById(id);
         }
 
+        [HttpGet]
+        [Route("~/api/user/getbyphone")]
+        public async Task<bool> GetByPhone(string phone)
+        {
+            return await this.userDataProvider.DoesUserExits(phone);
+        }
+
         [HttpPost]
         [Route("~/api/user")]
         public async Task<User> Insert([FromBody] User user)

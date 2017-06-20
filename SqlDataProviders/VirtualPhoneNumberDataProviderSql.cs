@@ -76,6 +76,7 @@ namespace SqlDataProviders
 
             return result;
         }
+
         /// <summary>
         /// Retrieves a list of VirtualPhoneNumber by user id.
         /// </summary>
@@ -106,6 +107,38 @@ namespace SqlDataProviders
             }
 
             return results;
+        }
+
+        /// <summary>
+        /// Retrieves a list of VirtualPhoneNumber by user id.
+        /// </summary>
+        /// <returns>A collection of VirtualPhoneNumbers</returns>
+        public override async Task<VirtualPhoneNumber> GetByVirtualPhoneNumber(string virtualphonenumber)
+        {
+            var result = default(VirtualPhoneNumber);
+
+            using (var connection = new SqlConnection(SqlProviderConstant.DatabaseConnectionString))
+            {
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "GetVirtualPhoneNumberByPhoneNumber";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "@PhoneNumber", Value = virtualphonenumber });
+
+                    await connection.OpenAsync();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            result = await AssembleVirtualPhoneNumberFromReaderAsync(reader);
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
 
         /// <summary>

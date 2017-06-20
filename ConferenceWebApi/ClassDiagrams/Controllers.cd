@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConferenceWebApi.Controllers.AvailableNumberController">
+    <Position X="4.25" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AvailableNumberController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConferenceWebApi.Controllers.ConferenceController">
+    <Position X="7.5" Y="0.5" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEQAAEAAAAAAAABAAAAAAAAAAAEAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Controllers\ConferenceController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConferenceWebApi.Controllers.IncomingCallController">
+    <Position X="7.5" Y="3.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\IncomingCallController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConferenceWebApi.Controllers.UserController">
+    <Position X="1.25" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAEACAAgAAABAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConferenceWebApi.Controllers.VerifyParticipantController">
+    <Position X="7.5" Y="4.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\VerifyParticipantController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConferenceWebApi.Controllers.VirtualPhoneNumberController">
+    <Position X="4.25" Y="0.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEQAAEAAAAgAAABAAAACAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\VirtualPhoneNumberController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

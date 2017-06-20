@@ -91,6 +91,15 @@ namespace JsonDataProviders
             return success;
         }
 
+        public override async Task<VirtualPhoneNumber> GetByVirtualPhoneNumber(string virtualphonenumber)
+        {
+            var result = default(VirtualPhoneNumber);
+
+            await Task.Delay(1);
+
+            return result;
+        }
+
         #endregion CRUD Operations
     }
 }

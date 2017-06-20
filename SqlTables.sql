@@ -34,6 +34,7 @@ CREATE TABLE [dbo].[Conferences]
 	[ConferenceId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
 	[UserId] UNIQUEIDENTIFIER NOT NULL,
 	[ConferenceName] NVARCHAR(50) NOT NULL,
+	[ConferencePassCode] NVARCHAR(50) NOT NULL,
 	[WelcomeMessage] NVARCHAR(50),
 	[Participants] NVARCHAR(MAX) NOT NULL,
 	[Cost] DECIMAL(10,2),

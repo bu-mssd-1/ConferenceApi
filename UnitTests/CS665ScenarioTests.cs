@@ -18,7 +18,7 @@ namespace UnitTests
         /// <summary>
         /// A placeholder for an new users device phone number
         /// </summary>
-        private string newUserDevicePhoneNumber = "+12064881199";
+        private string newUserDevicePhoneNumber = "+12064881212";
 
         /// <summary>
         /// A placeholder for an new user Id
@@ -28,7 +28,7 @@ namespace UnitTests
         /// <summary>
         /// A placeholder for an existing users device phone number
         /// </summary>
-        private string existingDevicePhoneNumber = "+12064881199";
+        private string existingDevicePhoneNumber = "+12064881213";
 
         /// <summary>
         /// A placeholder for an existing user Id
@@ -146,6 +146,8 @@ namespace UnitTests
                     };
 
                     request = new RestRequest("virtualphonenumber", Method.POST);
+                    request.AddJsonBody(virtualPhoneNumber);
+
                     var createPhoneNumberResponse = client.Execute(request);
 
                     if (createPhoneNumberResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -197,7 +199,7 @@ namespace UnitTests
             {
                 ConferenceId = newConferenceId,
                 ConferenceName = "CS 665 Conference Test",
-                ConferencePhoneNumber = conferenePhoneNumber,
+                ConferencePhoneNumber = "+16178304651",
                 ConferencePassCode = code.ToString(),
                 WelcomeMessage = "Welcome to C S 6 6 5",
                 DateCreated = DateTime.UtcNow,

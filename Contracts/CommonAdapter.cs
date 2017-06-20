@@ -23,5 +23,14 @@ namespace Contracts
         /// <param name="phoneNumber">The phone number to buy</param>
         /// <returns>A phone number sid as supplied by 3rd party provider</returns>
         public abstract Task<string> PurchasePhoneNumber(string phoneNumber);
+
+        /// <summary>
+        /// Updates a phone number
+        /// </summary>
+        /// <param name="sid"></param>
+        /// <param name="incomingCallUrl"></param>
+        /// <param name="statusCallbackUrl"></param>
+        /// <returns></returns>
+        public abstract Task<bool> UpatePhoneNumber(string sid, string incomingCallUrl, string statusCallbackUrl);
     }
 }

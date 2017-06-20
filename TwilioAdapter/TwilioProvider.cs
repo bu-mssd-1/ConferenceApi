@@ -86,5 +86,23 @@ namespace TwilioExternalAdapter
 
             return sid;
         }
+
+        /// <summary>
+        /// Updates a phone number with Urls
+        /// </summary>
+        /// <param name="sid"></param>
+        /// <param name="incomingCallUrl"></param>
+        /// <param name="statusCallbackUrl"></param>
+        /// <returns></returns>
+        public async Task<bool> UpatePhoneNumber(string sid,string incomingCallUrl, string statusCallbackUrl)
+        {
+            TwilioClient.Init(ProviderConstant.TwilioAccountSid, ProviderConstant.TwilioAuthToken);
+
+            await IncomingPhoneNumberResource.UpdateAsync(sid,
+                voiceUrl: new System.Uri(incomingCallUrl), voiceMethod: Twilio.Http.HttpMethod.Post);
+
+            //statusCallback: new System.Uri(statusCallbackUrl), statusCallbackMethod: Twilio.Http.HttpMethod.Post);
+            return true;
+        }
     }
 }

@@ -60,7 +60,9 @@ namespace ConferenceWebApi.Controllers
             // Update provider Id
             virtualPhoneNumber.ProviderId = providerId;
 
-            // TODO: Modify the resource in provider to include url/etc
+            // Modify the resource in provider to include url/etc
+            var updated = await adapter.UpatePhoneNumber(providerId, AppConstant.ExternalServiceUrlPrefix + "incomingcall",
+                AppConstant.ExternalServiceUrlPrefix + "status");
 
             return await this.virtualPhoneNumberDataProvider.CreateVirtualPhoneNumber(virtualPhoneNumber);
         }

@@ -41,5 +41,18 @@ namespace TwilioExternalAdapter
         {
             return await this.provider.PurchasePhoneNumber(phoneNumber);
         }
+
+        /// <summary>
+        /// Updates a phone number
+        /// </summary>
+        /// <param name="sid"></param>
+        /// <param name="incomingCallUrl"></param>
+        /// <param name="statusCallbackUrl"></param>
+        /// <returns></returns>
+        public override async Task<bool> UpatePhoneNumber(string sid, string incomingCallUrl, string statusCallbackUrl)
+        {
+            return await this.provider.UpatePhoneNumber(sid, incomingCallUrl, statusCallbackUrl);
+        }
+        
     }
 }
